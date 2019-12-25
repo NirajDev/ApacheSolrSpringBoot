@@ -1,5 +1,11 @@
 package com.junglee.solr.repository;
 
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.Point;
+import org.springframework.data.solr.core.query.Criteria;
+import org.springframework.data.solr.core.query.FilterQuery;
+import org.springframework.data.solr.core.query.SimpleFilterQuery;
+import org.springframework.data.solr.core.query.SimpleQuery;
 import org.springframework.data.solr.repository.Query;
 import org.springframework.data.solr.repository.SolrCrudRepository;
 
@@ -12,6 +18,8 @@ public interface EventRepo extends SolrCrudRepository<Event, Integer> {
 	@Query("id:*1* OR id:*2*")
 	Iterable<Event> resultBySolrQuery();
 
-	@Query("fq={!geofilt}&sfield=latlon&pt=28.534693, 77.260178&d=50&sort=geodist() asc")
+	@Query("lon:[77 TO 85]&fq=lat:[19 TO 28")
 	Event getEventsByDist();
+	
+	
 }

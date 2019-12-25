@@ -1,7 +1,9 @@
 package com.junglee.solr.model;
 
+
 import org.apache.solr.client.solrj.beans.Field;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.geo.Point;
 import org.springframework.data.solr.core.mapping.Indexed;
 import org.springframework.data.solr.core.mapping.SolrDocument;
 
@@ -17,14 +19,19 @@ import lombok.NoArgsConstructor;
 public class Event {
 	@Id
 	@Field
+	@Indexed
 	private int id;
+	
 	@Field
+	@Indexed
 	private String eventName;
+
+	@Indexed
 	@Field
 	private String place;
-	@Indexed (name = "latlon", type="location")
-	private String latlon;
-//	@Field
-//	private String longitude;
+	
+	@Indexed
+	@Field
+	private Point myLocationField;
 
 }
